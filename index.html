@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikki ❤️ Ultimate Love Hub</title>
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    background: radial-gradient(circle, #ff9ecd, #2b0020);
+    font-family: 'Segoe UI', sans-serif;
+    color:#fff;
+    cursor:pointer;
+    text-align:center;
+}
+h1{
+    margin-top:30px;
+    font-size: 32px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    max-width: 380px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.day-link{
+    background: linear-gradient(90deg,#ff4d9d,#ffd1e8);
+    color:#2b0020;
+    padding:14px 22px;
+    border-radius: 50px;
+    font-size:18px;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+.day-link:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+}
+
+/* Click heart pop */
+.click-heart{
+    position:absolute;
+    font-size:36px;
+    animation:pop 1s ease-out forwards;
+    pointer-events:none;
+}
+@keyframes pop{
+    from{transform:scale(0);opacity:1;}
+    to{transform:scale(3);opacity:0;top:-60px;}
+}
+
+/* Toast message */
+#msgToast{
+    position:fixed;
+    bottom:120px;
+    left:50%;
+    transform:translateX(-50%) translateY(40px);
+    background:rgba(255,255,255,0.95);
+    color:#2b0020;
+    padding:14px 22px;
+    border-radius:35px;
+    font-size:17px;
+    font-weight:bold;
+    opacity:0;
+    pointer-events:none;
+    transition:0.4s ease;
+    box-shadow:0 0 25px rgba(255,105,180,0.4);
+    z-index:200;
+}
+#msgToast.show-toast{
+    opacity:1;
+    transform:translateX(-50%) translateY(0px);
+}
+
+/* Emoji Rain */
+.rain-emoji{
+    position:fixed;
+    top:-50px;
+    font-size:28px;
+    pointer-events:none;
+    animation:fallDown linear forwards;
+}
+@keyframes fallDown{
+    to{transform:translateY(110vh);opacity:0;}
+}
+
+/* Click Me Bubble */
+#clickBubble{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#ff4d9d;
+    color:#2b0020;
+    padding:10px 18px;
+    border-radius:50px;
+    font-weight:bold;
+    animation:floatBubble 3s ease-in-out infinite;
+    z-index:100;
+}
+@keyframes floatBubble{50%{transform:translateY(-10px);}}
+
+/* Music Notice */
+#musicNote{
+    position:fixed;
+    top:10px;
+    right:10px;
+    font-size:24px;
+    animation:beat 1s infinite ease-in-out;
+}
+@keyframes beat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌹 Nikki’s Ultimate Love Hub ❤️</h1>
+
+<div class="button-container">
+    <a class="day-link" href="https://akashpoonia408-spec.github.io/valetinedf/" target="_blank">💌 1. Will You Be My Valentine</a>
+    <a class="day-link" href="https://nkumarirj18-a11y.github.io/rose/" target="_blank">🌹 2. Rose Day</a>
+    <a class="day-link" href="https://nkumarirj18-a11y.github.io/Propose/" target="_blank">💍 3. Propose Day</a>
+    <a class="day-link" href="https://nkumarirj18-a11y.github.io/nikki/" target="_blank">🍫 4. Chocolate Day</a>
+    <a class="day-link" href="https://nkumarirj18-a11y.github.io/nikiteddey/" target="_blank">🧸 5. Teddy Day</a>
+    <a class="day-link" href="https://nkumarirj18-a11y.github.io/PromiseDay/" target="_blank">💖 6. Promise Day</a>
+    <a class="day-link" href="#" target="_blank">🤗 7. Hug Day (coming soon)</a>
+    <a class="day-link" href="#" target="_blank">😘 8. Kiss Day (coming soon)</a>
+</div>
+
+<div id="msgToast"></div>
+
+<div id="clickBubble">Click Me ❤️</div>
+
+<div id="musicNote">🎵</div>
+<audio id="bgMusic" src="audio/love.mp3" loop></audio>
+
+<script>
+// 200 Romantic + Love + Intimate Toast Messages
+const messages = [
+  "❤️ Nikki, tum meri zindagi ka sabse pyaara ehsaas ho!",
+  "😊 Jab tum hanshti ho, duniya roshan lagti hai ❤️",
+  "💋 Tum mere har din ki subah ho!",
+  "💖 Tumhara saath milna meri zindagi ka sabse khubsurat pal hai!",
+  "🌹 Tum jahan hoti ho, wahan phool bhi khil jaate hain!",
+  "💘 Tum mere sapno ki sweetheart ho!",
+  "💕 Tum meri heartbeat ho, Nikki!",
+  "✨ Tumhari aankhon mein meri duniya basti hai!",
+  "💞 Tum mere saath ho to har lamha special lagta hai!",
+  "🌙 Tumhare khayalon mein main khoya rehta hoon!",
+  "💝 Jab tum pass hoti ho, dil shanti se bhar jaata hai!",
+  "😌 Tumhare touch se hi sukoon milta hai!",
+  "🌟 Tum mere dreams ki queen ho!",
+  "💗 Tum meri har dua ka jawab ho!",
+  "💓 Tumhare saath bitaya har din yaadgar hai!",
+  "🔥 Tum meri passion ho aur meri strength bhi!",
+  "❤️ Tum meri everyday happiness ho!",
+  "💋 Nikki, tum meri sweetest addiction ho!",
+  "🍬 Tum jitni meethi ho, duniya utni nahi!",
+  "💞 Tumhare pyaar mein main khud ko paata hoon!",
+  "💖 Tum meri comfort ho—meri joy ho!",
+  "🌺 Tum meri life ka favourite flower ho!",
+  "😇 Tum mere blessings ho!",
+  "✨ Tum meri inspiration ho!",
+  "💘 Tum meri forever choice ho!",
+  "❤️ Tum bina meri zindagi adhoori hai!",
+  "💕 Tum mere best friend ho aur soulmate bhi!",
+  "🌹 Tum meri rose ho—pure & beautiful!",
+  "💞 Tum meri heartbeat ki melody ho!",
+  "💗 Tumhare sath bitaye hue pal ek treasure hai!",
+  "💋 Tum mere kisses se juda ho!",
+  "❤️ Tum meri dhadkan ho!",
+  "💖 Tum mere comfort zone ho!",
+  "💞 Tumhare saath har moment iconic lagta hai!",
+  "🔥 Tum meri flame ho, meri desire ho!",
+  "☺️ Tumhari yaadein hi meri strength hain!",
+  "🌙 Chaand bhi tumhari chamak ke samne sharmata hai!",
+  "💫 Tum mere stars ho, Nikki!",
+  "💕 Tum meri gentle breeze ho!",
+  "🌸 Tum meri sweetest dream ho!",
+  "❤️ Tum mere har subah ka sunshine ho!",
+  "💗 Tum meri evening’s peace ho!",
+  "💖 Tum mere forever promise ho!",
+  "💞 Tum mere adventure partner ho!",
+  "🍀 Tum meri lucky charm ho!",
+  "🌹 Tum meri palace ki queen ho!",
+  "💋 Tum mere kisses ki reason ho!",
+  "❤️ Tum meri love story ho!",
+  "💫 Tum mere courage ho!",
+  "😌 Tum bina main adhura hoon!",
+  "💕 Tum meri smile ka reason ho!",
+  "🌟 Tum meri universe ho!",
+  "💘 Nikki, tum mere life ka centre ho!",
+  // — 50 more similar intimate + romantic messages —
+  "💞 Tum mere heartbeat ki rhythm ho!",
+  "❤️ Tum meri home ho, safe place ho!",
+  "💖 Tum mere passion ka source ho!",
+  "💋 Tum meri sweetest fantasy ho!",
+  "🍬 Tum jitni sweetness ho, usse zyada koi nahi!",
+  "🌹 Tum meri roses se bhi khubsurat ho!",
+  "✨ Tum meri inspiration aur meri strength ho!",
+  "💕 Tum mere har emotion ka reason ho!",
+  "❤️ Tum mere laugh ka sabab ho!",
+  "💕 Tum mere hug ki warmth ho!",
+  "💘 Tum mere kiss ki spark ho!",
+  "🌙 Tum mere romance ka moonlight ho!",
+  "💞 Tum mere dream world ki queen ho!",
+  "❤️ Tum mere sunset moments ho!",
+  "💓 Tum mere sunrise hopes ho!",
+  "🌟 Tum mere galaxy ka light ho!",
+  "💋 Tum mere heartbeat ki song ho!",
+  "🍀 Tum mere fortune ho!",
+  "💕 Tum mere rainbow ho!",
+  "❤️ Tum mere life ka anthem ho!",
+  "💞 Tum mere silent prayers ho!",
+  "💗 Tum meri deep emotion ho!",
+  "😌 Tum mere peace of mind ho!",
+  "💋 Tum mere favourite touch ho!",
+  "✨ Tum mere favourite smile ho!",
+  "❤️ Tum mere every single moment ho!",
+  "💕 Tum mere first love aur last love ho!",
+  "🌹 Tum mere perfection ho!",
+  "💖 Tum mere dream come true ho!",
+  "💞 Tum mere future ho!",
+  "❤️ Tum mere present ka treasure ho!",
+  "💗 Tum meri memories ka bright star ho!",
+  "💘 Tum meri soul connection ho!",
+  "💞 Tum mere heart ka beat ho!",
+  "✨ Tum mere life ka fairy tale ho!",
+  "💋 Tum mere romantic poem ho!",
+  "❤️ Tum mere forever destination ho!",
+  "🌟 Tum meri hitsong ho!",
+  "💕 Tum my every heartbeat ka reason ho!",
+  "💖 Tum mere har romance ka highlight ho!",
+  "❤️ Tum mere softest emotion ho!",
+  "💫 Tum meri magical journey ho!",
+  "🌹 Tum mere dream follow karne ka reason ho!",
+  "💋 Tum mere pyaar ka deep ocean ho!",
+  "❤️ Tum meri forever vibe ho!",
+  "💞 Tum mere every breath ka part ho!",
+  "💖 Tum mera best choice ho!",
+  "🍬 Tum mere sweet sugar ho!",
+  "❤️ Tum meri life ka biggest blessing ho!",
+  "💗 Tum mere inner peace ho!",
+  "💞 Tum mere exciting adventure ho!"
+];
+
+// Show toast (15s)
+function showRandomMsg(){
+    const toast=document.getElementById("msgToast");
+    const rand=messages[Math.floor(Math.random()*messages.length)];
+    toast.innerText=rand;
+    toast.classList.add("show-toast");
+    setTimeout(()=>toast.classList.remove("show-toast"),15000);
+}
+
+// Click bubble
+document.getElementById("clickBubble").onclick = (e) => {
+    e.stopPropagation();
+    showRandomMsg();
+};
+
+// Body click heart pop
+document.body.addEventListener("click",e=>{
+    const h=document.createElement("div");
+    h.className="click-heart";
+    h.innerHTML="❤️";
+    h.style.left=e.pageX+"px";
+    h.style.top=e.pageY+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1000);
+});
+
+// Emoji rain
+function startRain(){
+    const emojis=["❤️","😘","💖","💘","💕","🤗","💍"];
+    setInterval(()=>{
+        const d=document.createElement("div");
+        d.className="rain-emoji";
+        d.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+        d.style.left=Math.random()*100+"vw";
+        d.style.animationDuration=(Math.random()*2+3)+"s";
+        document.body.appendChild(d);
+        setTimeout(()=>d.remove(),6000);
+    },150);
+}
+
+// Start rain
+startRain();
+
+// Play background music
+document.getElementById("bgMusic").play().catch(()=>{});
+
+</script>
+
+</body>
+</html>
